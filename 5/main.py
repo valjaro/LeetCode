@@ -1,9 +1,5 @@
 class Solution:
     def longestPalindrome(self, s):
-        dp = [[0]*len(s) for _ in range(len(s))]
-        for i in range(len(s)):
-            dp[i][i] = True
-            longest_palindrom = s[i]
         if len(s) > 0:
             s = list(s)
             main = []
