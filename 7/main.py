@@ -18,7 +18,7 @@ class Solution(object):
                     break
         finally:
             r = int("".join(map(str, x)))
-            if r > 2147483647 or r < -2147483648: return 0
+            if r > (2**31 - 1) or r < -(2**31): return 0
             else:
                 return r
 
