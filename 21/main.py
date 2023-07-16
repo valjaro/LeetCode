@@ -1,8 +1,10 @@
 # https://leetcode.com/problems/merge-two-sorted-lists/
+# Definition for singly-linked list.
 class ListNode(object):
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
 class Solution(object):
     def mergeTwoLists(self, list1, list2):
         """
@@ -10,37 +12,28 @@ class Solution(object):
         :type list2: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
-        h1, h2 = list1, list2
-        merged_head  = ListNode(None)
-        current = merged_head
-        while h1 is not None and h2 is not None:
-            if h1.val < h2.val:
-                current.next = h1
-                h1 = h1.next
+        dummy = cur = ListNode(0)
+        while list1 and list2:
+            print(list1)
+            print(list2)
+            if list1.val < list2.val:
+                cur.next = list1
+                list1 = list1.next
             else:
-                current.next = h2
-                h2 = h2.next
-            current = current.next
-        if h1 is not None:
-            current.next = h1
-            
-        if h2 is not None:
-            current.next = h2
+                cur.next = list2
+                list2 = list2.next
+            print("current:")
+            print(cur)
+            print("dummy:")
+            print(dummy)
+            print("/////////////////")
+            cur = cur.next
+        cur.next = list1 or list2
+        return dummy.next 
 
-        current = current.next
-        return current
-
-        
 if __name__ == "__main__":
     s = Solution()
-    list1 = ListNode(1)
-    list1.next = ListNode(2)
-    list1.next.next = ListNode(4)   
-    list2 = ListNode(1)
-    list2.next = ListNode(3)
-    list2.next.next = ListNode(4)   
+    list1 = [1,2,4]
+    list2 = [1,3,4]
     r = s.mergeTwoLists(list1, list2)
-    current = r
-    while current is not None:
-        print(current.data)
     print(r)
